@@ -1,0 +1,21 @@
+from secrets import choice
+from unittest import result
+import streamlit as st
+import numpy as np
+import pandas as pd
+# title
+st.title("Hello World!")
+#st.header("This is a header")
+#st.subheader("This is a subheader")
+#st.text("Hello Andy!")
+#
+#age = st.selectbox("Choose your age:", np.arange(18,66,1) )
+#age = st.slider("Choose your age: ", min_value=16, max_value=66, value=35, step=1)
+#artists = st.multiselect("Who are your favorite artists?",
+#                         ["Michael Jackson", "Elvis Presley",
+#                          "Eminem", "Billy Joel", "Madonna"])
+
+actions = {"A": st.write, "B": st.write, "C": st.write}
+choice = st.selectbox("Choose one:", ["_", "A", "B", "C"])
+if choice != "_":
+    result = actions[choice](f"You chose {choice}")
