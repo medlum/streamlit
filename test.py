@@ -1,10 +1,10 @@
-import folium
+import folium, streamlit_folium
 import streamlit as st
 from streamlit_folium import folium_static
 import numpy as np
 import pandas
 #st.set_page_config(layout="wide")
-print(folium.__version__)
+#print(streamlit-folium.__version__)
 
 m = folium.Map(location=[23.47, 77.94], tiles="CartoDB positron", name = "Light Map", zoom_start=5, attr="My Data")
 
