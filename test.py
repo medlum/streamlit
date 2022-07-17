@@ -6,13 +6,18 @@ import pandas as pd
 st.set_page_config(layout="wide")
 #print(streamlit-folium.__version__)
 
-import json, csv, requests, datetime
+import json
+import csv
+import requests
+import datetime
 from cp_dict import cp_dict
 
 # set to system current datetime and remove microsecond
-now = str(datetime.datetime.today().replace(microsecond=0))
+now_dt = datetime.datetime.today().replace(microsecond=0)
+now_str = str(now_dt)
 # include T in current datetime as a required api query parameter
-now_T = now.replace(' ', 'T')
+now_T = now_str.replace(' ', 'T')
+now_plus8 = str(now_dt + datetime.timedelta(hours=8))
 # api url
 endpoint = "https://api.data.gov.sg/v1/transport/carpark-availability"
 # query parameter
@@ -20,7 +25,7 @@ query_params = {'date_time': now_T}
 # get data and convert to json
 data = requests.get(endpoint, params=query_params).json()
 st.title(f"HDB Car Park Availability in Real Time")
-st.header(now)
+st.header(now_plus8)
 #
 #cp_code = []
 #total_lots = []
