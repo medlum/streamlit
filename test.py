@@ -1,7 +1,7 @@
 import folium, streamlit_folium
 import streamlit as st
 from streamlit_folium import folium_static
-import json, csv, requests, datetime
+import json, csv, requests, datetime, time
 from cp_dict import cp_dict
 
 # ------------------ set time and connect api ------------------ #
@@ -51,29 +51,32 @@ for index in range(len(cp_code) - 1):
 
 # ------------------ folium and streamlit ------------------ #
 st.set_page_config(layout="wide")
-st.title(f"HDB Car Park Availability in Real Time")
+st.title(f"Real Time HDB Car Park Availability (version 1.0)")
 st.header(now_plus8)
+st.subheader("Programmed by Andy Oh")
 m = folium.Map(location=[1.3521, 103.8198], tiles="CartoDB positron",
                name="Light Map", zoom_start=11, attr="My Data")
 
+with st.spinner('Wait for it...'):
+    for coord in complete_list:
+        custom_icon = folium.CustomIcon(
+            icon_image='carpark_logo.jpg', icon_size=(20, 20))
+        #iframe = folium.IFrame(
+        #    f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}")
+        poopup = folium.Popup(
+            f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}", min_width=300, max_width=300)
+        folium.Marker(location=[coord[3], coord[4]],
+                    popup=poopup,
+                    tooltip=coord[2],
+                    icon=custom_icon).add_to(m)
 
-for coord in complete_list:
-    custom_icon = folium.CustomIcon(
-        icon_image='carpark_logo.jpg', icon_size=(20, 20))
-    #iframe = folium.IFrame(
-    #    f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}")
-    poopup = folium.Popup(
-        f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}", min_width=300, max_width=300)
-    folium.Marker(location=[coord[3], coord[4]],
-                  popup=poopup,
-                  tooltip=coord[2],
-                  icon=custom_icon).add_to(m)
+        time.sleep(1)
 
-custom_icon = folium.CustomIcon(icon_image='home_icon.png', icon_size=(20, 20))
-folium.Marker([1.3633000666013873, 103.82944513883707],
-              popup="<h2>Our Home</h2><img src='https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=v5F4Y808Zl0aF5mkDzo4-A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=186.54817&pitch=0&thumbfov=100', width=200px><p>18 Jalan Gendang</p>",
-                tooltip="Home",
-                icon=custom_icon).add_to(m)
+st.success('Done!')
+
+#with st.spinner('Wait for it...'):
+#    time.sleep(5)
+#st.success('Done!')
 
 folium_static(m, width=950, height=560)
 
