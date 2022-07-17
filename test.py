@@ -57,27 +57,20 @@ st.subheader("Programmed by Andy Oh")
 m = folium.Map(location=[1.3521, 103.8198], tiles="CartoDB positron",
                name="Light Map", zoom_start=11, attr="My Data")
 
-with st.spinner('Wait for it...'):
-    for coord in complete_list:
-        custom_icon = folium.CustomIcon(
-            icon_image='carpark_logo.jpg', icon_size=(20, 20))
-        #iframe = folium.IFrame(
-        #    f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}")
-        poopup = folium.Popup(
-            f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}", min_width=300, max_width=300)
-        folium.Marker(location=[coord[3], coord[4]],
-                    popup=poopup,
-                    tooltip=coord[2],
-                    icon=custom_icon).add_to(m)
 
-        time.sleep(1)
+for index, coord in enumerate(complete_list):
 
-st.success('Done!')
-
-#with st.spinner('Wait for it...'):
-#    time.sleep(5)
-#st.success('Done!')
-
+    custom_icon = folium.CustomIcon(
+        icon_image='carpark_logo.jpg', icon_size=(20, 20))
+    #iframe = folium.IFrame(
+    #    f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}")
+    poopup = folium.Popup(
+        f"Total Lots: {coord[7]} <br> Available Lots: {coord[8]} <br> Type of Carpark: {coord[5]} <br> Short Term Parking: {coord[6]}", min_width=300, max_width=300)
+    folium.Marker(location=[coord[3], coord[4]],
+                popup=poopup,
+                tooltip=coord[2],
+                icon=custom_icon).add_to(m)
+  
 folium_static(m, width=950, height=560)
 
 ##data = pd.DataFrame({
