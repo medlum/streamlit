@@ -15,7 +15,7 @@ m = folium.Map(location=[1.3521, 103.8198], tiles="CartoDB positron",
 
 custom_icon = folium.CustomIcon(icon_image='home_icon.png', icon_size=(20, 20))
 folium.Marker([1.3633000666013873, 103.82944513883707],
-                popup="<h2>Our Home</h2><p>18 Jalan Gendang</p>",
+                popup="<h2>Our Home</h2><img src='home.jpg', width=200px><p>18 Jalan Gendang</p>",
                 tooltip="Home",
                 icon=custom_icon).add_to(m)
 
