@@ -6,16 +6,28 @@ import pandas as pd
 st.set_page_config(layout="wide")
 #print(streamlit-folium.__version__)
 
+import json
+import csv
+import requests
+import datetime
+
+
+# set to system current datetime and remove microsecond
+now = str(datetime.datetime.today().replace(microsecond=0))
+# include T in current datetime as a required api query parameter
+
+
 #https://deckgl.readthedocs.io/en/latest/
 
-st.title("HDB Car Park Availability in Real Time")
+st.title(f"HDB Car Park Availability in Real Time")
+st.header(now)
 
 m = folium.Map(location=[1.3521, 103.8198], tiles="CartoDB positron",
                name="Light Map", zoom_start=11, attr="My Data")
 
 custom_icon = folium.CustomIcon(icon_image='home_icon.png', icon_size=(20, 20))
 folium.Marker([1.3633000666013873, 103.82944513883707],
-                popup="<h2>Our Home</h2><img src='home.jpg', width=200px><p>18 Jalan Gendang</p>",
+              popup="<h2>Our Home</h2><img src='https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=v5F4Y808Zl0aF5mkDzo4-A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=186.54817&pitch=0&thumbfov=100', width=200px><p>18 Jalan Gendang</p>",
                 tooltip="Home",
                 icon=custom_icon).add_to(m)
 
