@@ -3,7 +3,7 @@ from api_call import api_func
 from data_proc import data_proc_func
 from stream_map import map_stream_func
 
-def main_function():
+def main():
 
     now_modifed, data = api_func()
     complete_list = data_proc_func(data)
