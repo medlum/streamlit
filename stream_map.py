@@ -14,7 +14,8 @@ def map_stream_func(now_modifed, complete_list):
 
     # set page
     st.title("Real Time HDB Car Park Availability")
-    st.header(f"Current Date & Time [{now_modifed}]")
+    st.header(f"Current Date & Time")
+    st.header(f"{now_modifed}")
     st.text("[V1.0] Andy Oh | School of Business & Acccountancy | Ngee Ann Polytechnic".upper())
    
     # set singapore map with folium module
@@ -42,7 +43,7 @@ def map_stream_func(now_modifed, complete_list):
 
     mc.add_to(m)
     # use streamlit function 
-    folium_static(m, width=400, height=860)
+    folium_static(m, width=1000, height=560)
     
 
 
