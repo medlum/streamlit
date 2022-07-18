@@ -19,7 +19,7 @@ def map_stream_func(now_modifed, complete_list):
    
     # set singapore map with folium module
     m = folium.Map(location=[1.3521, 103.8198], min_zoom =11, max_zoom = 15, max_bounds=True, tiles="CartoDB positron",
-                name="Light Map", zoom_start=11, attr="My Data")
+                name="Light Map", zoom_start=11)
     
     # MarkCluster plugin for faster mapping
     mc = MarkerCluster()
@@ -42,7 +42,7 @@ def map_stream_func(now_modifed, complete_list):
 
     mc.add_to(m)
     # use streamlit function 
-    folium_static(m, width=1000, height=560)
+    folium_static(m, width=400, height=860)
     
 
 
