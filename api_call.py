@@ -18,7 +18,8 @@ def api_func():
     # include T in current datetime as a required api query parameter
     now_T = now_str.replace(' ', 'T')
     # add 8 hours server due to timezone difference in streamlit
-    now_plus8 = str(now_dt + datetime.timedelta(hours=8))
+    now_modifed = str(now_dt + datetime.timedelta(hours=8))
+    
     # api url
     endpoint = "https://api.data.gov.sg/v1/transport/carpark-availability"
     # query parameter
@@ -26,4 +27,4 @@ def api_func():
     # get data and convert to json
     data = requests.get(endpoint, params=query_params).json()
 
-    return now_plus8, data
+    return now_modifed, data
