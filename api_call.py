@@ -8,7 +8,7 @@ from cp_dict import cp_dict
 
 
 # ------------------ set time and connect api ------------------ #
-@st.cache
+#@st.cache
 def api_func():
     
     # set to system current datetime and remove microsecond

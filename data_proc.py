@@ -4,7 +4,7 @@ import streamlit as st
 # ------------------ data processing ------------------ #
 
 
-@st.cache
+#@st.cache
 def data_proc_func(data):
     cp_code = []
     total_lots = []
